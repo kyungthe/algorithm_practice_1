@@ -6,10 +6,10 @@
 
 int main()
 {
-	int n, temp, count = 0;
+	unsigned int n, temp, count = 0;
 
-	scanf_s("%d", &temp);
-	n = temp;
+	scanf_s("%d", &n);
+	temp = n;
 
 	while (temp)
 	{
