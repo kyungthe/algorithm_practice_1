@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <array>
 #include <algorithm>
 #include <cmath>
 
@@ -9,47 +10,27 @@ using namespace std;
 
 int Mode(vector<int>& v)
 {
-	int count = 1;
-	int max1 = v[0];
-	int i1 = 0;
-	int max2 = v[0];
-	int i2 = 0;
+	array<int, 8001> arr = { 0 };
+	int max1, max2;
 
-	for (size_t i = 1; i < v.size(); i++)
+	max1 = 0;
+	for (size_t i = 0; i < v.size(); i++)
 	{
-		if (v[i] == v[i - 1])
-			count++;
-		else if (count > max1)
-		{
-			max1 = count;
-			count = 1;
-			i1 = i;
-		}
+		int index = v[i] + 4000;
+		arr[index]++;
+		if (arr[index] > arr[max1])
+			max1 = index;
 	}
 
-	count = 1;
+	max2 = 0;
+	for (size_t i = 0; i < arr.max_size(); i++)
+		if (i != max1 && arr[i] > arr[max2])
+			max2 = i;
 
-	for (size_t i = 1; i < v.size(); i++)
-	{
-		if (v[i] == v[i - 1] && v[i] != v[i1])
-			count++;
-		else if (count > max2 && v[i] != v[i1])
-		{
-			max2 = count;
-			count = 1;
-			i2 = i;
-		}
-	}
-
-	if (max1 == max2)
-	{
-		if (v[i1] > v[i2])
-			return v[i2];
-		else
-			return v[i1];
-	}
+	if (arr[max1] == arr[max2])
+		return max2 - 4000;
 	else
-		return v[i1];
+		return max1 - 4000;
 }
 
 int main()
