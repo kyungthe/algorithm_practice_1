@@ -21,8 +21,6 @@ void SieveOfEratosthenes(vector<int>& v)
 int main()
 {
 	int M, N;
-	int sum = 0;
-	int first = 0;
 
 	cin >> M >> N;
 	vector<int> v(N + 1, 0);
