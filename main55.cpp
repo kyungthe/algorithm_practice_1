@@ -10,17 +10,15 @@ int main()
 	
 	cin >> N >> K;
 
-	int n, k, n_k;
-	n = k = n_k = 1;
+	int n, n_k;
+	n = n_k = 1;
 
-	for (int i = 1; i <= N; i++)
+	for (int i = N; i > K; i--)
 		n *= i;
-	for (int i = 1; i <= K; i++)
-		k *= i;
-	for (int i = 1; i <= N - K; i++)
+	for (int i = N - K; i > 0; i--)
 		n_k *= i;
 
-	cout << n / (k * n_k) << "\n";
+	cout << n / n_k << "\n";
 
 	return 0;
 }
